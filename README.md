@@ -9,11 +9,11 @@ Built for the **FIFA World Cup 2026™ Smart Stadiums & Tournament Operations Ch
 
 | Landing Page | Organizer Command Center |
 | --- | --- |
-| ![Landing Page Preview](file:///C:/Users/amans/.gemini/antigravity-ide/brain/d13106d3-5196-4307-8d42-1586057ffa9a/landing_page_1784359931736.png) | ![Command Center Preview](file:///C:/Users/amans/.gemini/antigravity-ide/brain/d13106d3-5196-4307-8d42-1586057ffa9a/dashboard_initial_1784360026669.png) |
+| ![Landing Page Preview](public/landing_page.png) | ![Command Center Preview](public/dashboard_initial.png) |
 
 | Live AI Operations Copilot Chatbot | Mobile Fan Companion Hub |
 | --- | --- |
-| ![Operations Chatbot Preview](file:///C:/Users/amans/.gemini/antigravity-ide/brain/d13106d3-5196-4307-8d42-1586057ffa9a/chatbot_working_1784362806853.png) | ![Fan Portal Preview](file:///C:/Users/amans/.gemini/antigravity-ide/brain/d13106d3-5196-4307-8d42-1586057ffa9a/fan_portal_1784360798438.png) |
+| ![Operations Chatbot Preview](public/chatbot_working.png) | ![Fan Portal Preview](public/fan_portal.png) |
 
 ---
 
