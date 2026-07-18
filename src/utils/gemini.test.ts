@@ -1,5 +1,5 @@
 import { askGeminiAI } from './gemini';
-import { Zone, Concession, TransitLine, Volunteer, EmergencyIncident } from '../data/mockStadiumData';
+
 
 const mockState = {
   zones: [

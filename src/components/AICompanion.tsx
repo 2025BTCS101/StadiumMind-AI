@@ -5,11 +5,23 @@ import { useStadiumState } from '../context/StadiumContext';
 import { askGeminiAI } from '../utils/gemini';
 import { useThemeSettings } from '../context/ThemeContext';
 import { Send, Mic, MicOff, Volume2, VolumeX, Smartphone, User, Bot, HelpCircle } from 'lucide-react';
+import { t } from '../utils/translations';
 
 interface ChatMessage {
   sender: 'user' | 'bot';
   text: string;
   time: string;
+}
+
+interface SpeechRecognitionInstance {
+  start: () => void;
+  stop: () => void;
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onresult: (event: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => void;
+  onerror: () => void;
+  onend: () => void;
 }
 
 export const AICompanion: React.FC = () => {
@@ -24,24 +36,26 @@ export const AICompanion: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   // Auto-scroll chat
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
+
   // Speech Recognition Setup (Web Speech API)
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const win = window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance };
+      const SpeechRecognition = win.SpeechRecognition || win.webkitSpeechRecognition;
       if (SpeechRecognition) {
         const rec = new SpeechRecognition();
         rec.continuous = false;
         rec.interimResults = false;
         rec.lang = language === 'en' ? 'en-US' : language;
         
-        rec.onresult = (event: any) => {
+        rec.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
           setInput(transcript);
           setIsRecording(false);
@@ -110,7 +124,7 @@ export const AICompanion: React.FC = () => {
 
     try {
       // Query our Gemini service (combines API call with detailed local fallback using live context)
-      const aiReply = await askGeminiAI(textToSend, state);
+      const aiReply = await askGeminiAI(textToSend, state, undefined, language);
       
       const botMsg: ChatMessage = { sender: 'bot', text: aiReply, time: currentTime };
       setMessages(prev => [...prev, botMsg]);
@@ -158,7 +172,7 @@ export const AICompanion: React.FC = () => {
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[9px] font-bold text-slate-400 uppercase">GRID CONNECTED</span>
+          <span className="text-[9px] font-bold text-slate-400 uppercase">{t('grid_connected', language)}</span>
         </div>
       </div>
 
@@ -183,7 +197,7 @@ export const AICompanion: React.FC = () => {
                       ? 'bg-indigo-600 text-white rounded-tr-none'
                       : 'bg-slate-900 text-slate-200 border border-slate-800/80 rounded-tl-none'
                   }`}>
-                    {msg.text}
+                    {index === 0 && msg.sender === 'bot' ? t('bot_initial', language) : msg.text}
                   </div>
                   
                   {/* Meta (time / TTS speaker) */}
@@ -193,7 +207,7 @@ export const AICompanion: React.FC = () => {
                     <span>{msg.time}</span>
                     {!isUser && (
                       <button
-                        onClick={() => speakText(msg.text)}
+                        onClick={() => speakText(index === 0 ? t('bot_initial', language) : msg.text)}
                         className="text-slate-500 hover:text-blue-400 transition-colors"
                         title="Read out loud"
                       >
@@ -229,7 +243,7 @@ export const AICompanion: React.FC = () => {
       <div className="border-t border-slate-900 bg-slate-950 p-2.5">
         <div className="mb-1 flex items-center gap-1 text-[9px] font-bold text-slate-500 uppercase">
           <HelpCircle className="h-3 w-3 text-slate-600" />
-          <span>Tap to Ask Stadiummind</span>
+          <span>{t('tap_to_ask', language)}</span>
         </div>
         <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none scroll-smooth">
           {sampleQueries.map((query, i) => (
@@ -264,7 +278,7 @@ export const AICompanion: React.FC = () => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={isRecording ? 'Listening...' : 'Type message...'}
+          placeholder={isRecording ? t('listening', language) : t('type_placeholder', language)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleSendMessage(input);
           }}

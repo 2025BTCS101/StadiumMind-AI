@@ -12,6 +12,17 @@ interface ChatMessage {
   time: string;
 }
 
+interface SpeechRecognitionInstance {
+  start: () => void;
+  stop: () => void;
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onresult: (event: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => void;
+  onerror: () => void;
+  onend: () => void;
+}
+
 export const DashboardChatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const state = useStadiumState();
@@ -29,7 +40,7 @@ export const DashboardChatbot: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -38,14 +49,15 @@ export const DashboardChatbot: React.FC = () => {
   // Speech Recognition binding
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const win = window as unknown as { SpeechRecognition?: new () => SpeechRecognitionInstance; webkitSpeechRecognition?: new () => SpeechRecognitionInstance };
+      const SpeechRecognition = win.SpeechRecognition || win.webkitSpeechRecognition;
       if (SpeechRecognition) {
         const rec = new SpeechRecognition();
         rec.continuous = false;
         rec.interimResults = false;
         rec.lang = language === 'en' ? 'en-US' : language;
 
-        rec.onresult = (event: any) => {
+        rec.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
           setInput(transcript);
           setIsRecording(false);

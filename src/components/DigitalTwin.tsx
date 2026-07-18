@@ -6,7 +6,7 @@ import { Zone } from '../data/mockStadiumData';
 import { Flame, AlertTriangle, ShieldAlert, Heart, Radio, Activity, Eye } from 'lucide-react';
 
 export const DigitalTwin: React.FC = () => {
-  const { zones, emergencies, currentScenario } = useStadiumState();
+  const { zones, emergencies } = useStadiumState();
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
   const [showHeatmap, setShowHeatmap] = useState(true);
   const [showEvacPaths, setShowEvacPaths] = useState(false);

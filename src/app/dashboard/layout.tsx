@@ -12,7 +12,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { matchInfo, triggerNextMatchMinute, emergencies, currentScenario } = useStadiumState();
+  const { matchInfo, triggerNextMatchMinute, emergencies } = useStadiumState();
 
   const activeIncidentCount = emergencies.filter(e => e.status !== 'resolved').length;
 
@@ -84,7 +84,7 @@ export default function DashboardLayout({
           <div className="flex items-center gap-4 min-w-0">
             <div className="rounded bg-slate-900 px-3 py-1.5 border border-slate-800 shrink-0 text-center">
               <span className="font-extrabold text-sm tracking-wide text-white font-mono">{matchInfo.score}</span>
-              <span className="ml-2 font-bold text-xs text-blue-500 font-mono">{matchInfo.minute}'</span>
+              <span className="ml-2 font-bold text-xs text-blue-500 font-mono">{matchInfo.minute}&apos;</span>
             </div>
             <p className="text-xs font-semibold text-slate-400 truncate hidden md:block">
               {matchInfo.timeline}

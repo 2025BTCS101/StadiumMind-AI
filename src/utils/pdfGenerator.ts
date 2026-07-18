@@ -29,7 +29,6 @@ export function exportMatchReport(data: ReportData) {
     return;
   }
 
-  const activeEmergencies = data.emergencies.filter(e => e.status !== 'resolved');
   const resolvedEmergencies = data.emergencies.filter(e => e.status === 'resolved');
   const busyGates = [...data.zones]
     .filter(z => z.type === 'gate')

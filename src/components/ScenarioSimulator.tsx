@@ -24,7 +24,7 @@ export const ScenarioSimulator: React.FC = () => {
         <div>
           <h2 className="flex items-center gap-2 text-lg font-bold tracking-tight text-white">
             <Sparkles className="h-5 w-5 text-indigo-400" />
-            AI "What-If" Scenario Simulator
+            AI &quot;What-If&quot; Scenario Simulator
           </h2>
           <p className="text-xs text-slate-400">Model event disruptions and pre-emptively forecast impacts.</p>
         </div>

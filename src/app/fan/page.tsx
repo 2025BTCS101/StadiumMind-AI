@@ -4,8 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import { AICompanion } from '../../components/AICompanion';
 import { ArrowLeft, Sparkles, Languages, Volume2, Mic } from 'lucide-react';
+import { useThemeSettings } from '../../context/ThemeContext';
+import { t } from '../../utils/translations';
 
 export default function FanPage() {
+  const { language } = useThemeSettings();
+
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between overflow-hidden">
       
@@ -21,11 +25,11 @@ export default function FanPage() {
             className="flex items-center gap-1.5 rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs font-bold text-slate-350 hover:bg-slate-850 hover:text-white transition-all"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Exit Hub</span>
+            <span>{t('exit_hub', language)}</span>
           </Link>
           <div className="hidden sm:block">
             <h1 className="font-extrabold text-sm text-white uppercase tracking-tight">StadiumMind</h1>
-            <p className="text-[9px] text-slate-500 font-semibold uppercase tracking-widest">Fan Assistant Portal</p>
+            <p className="text-[9px] text-slate-500 font-semibold uppercase tracking-widest">{t('fan_portal', language)}</p>
           </div>
         </div>
         
@@ -47,14 +51,14 @@ export default function FanPage() {
           </div>
           
           <h2 className="text-3xl font-extrabold text-white tracking-tight leading-tight">
-            AI Fan Assistant<br />
+            {t('ai_fan_assistant', language)}<br />
             <span className="bg-gradient-to-r from-indigo-400 to-blue-400 bg-clip-text text-transparent">
-              Right In Your Pocket
+              {t('in_pocket', language)}
             </span>
           </h2>
           
           <p className="text-xs text-slate-400 leading-relaxed font-medium">
-            This simulates the mobile app interface that spectators would load on their smartphones by scanning QR codes on seats or stadium gate banners. It links directly into the smart stadium's central telemetry grid.
+            {t('mobile_desc', language)}
           </p>
 
           <div className="space-y-4 pt-4 border-t border-slate-900 text-xs">
@@ -63,8 +67,8 @@ export default function FanPage() {
                 <Mic className="h-3.5 w-3.5" />
               </div>
               <div>
-                <strong className="text-slate-200">Voice Dictation Support</strong>
-                <p className="text-[11px] text-slate-400 mt-0.5">Tap the microphone icon, grant browser audio permissions, and speak. Your voice translates to text instantly.</p>
+                <strong className="text-slate-200">{t('voice_support', language)}</strong>
+                <p className="text-[11px] text-slate-400 mt-0.5">{t('voice_support_desc', language)}</p>
               </div>
             </div>
 
@@ -73,8 +77,8 @@ export default function FanPage() {
                 <Volume2 className="h-3.5 w-3.5" />
               </div>
               <div>
-                <strong className="text-slate-200">Voice Read-Aloud (TTS)</strong>
-                <p className="text-[11px] text-slate-400 mt-0.5">Toggle "Voice Narrations" in the accessibility menu (bottom-right) or tap the speaker icon inside any AI message bubble to hear it read out loud.</p>
+                <strong className="text-slate-200">{t('voice_read', language)}</strong>
+                <p className="text-[11px] text-slate-400 mt-0.5">{t('voice_read_desc', language)}</p>
               </div>
             </div>
 
@@ -83,8 +87,8 @@ export default function FanPage() {
                 <Languages className="h-3.5 w-3.5" />
               </div>
               <div>
-                <strong className="text-slate-200">50+ Language Integrations</strong>
-                <p className="text-[11px] text-slate-400 mt-0.5">Select your operating language in the accessibility panel. The AI will translate responses and speak back using native accents.</p>
+                <strong className="text-slate-200">{t('lang_integrations', language)}</strong>
+                <p className="text-[11px] text-slate-400 mt-0.5">{t('lang_integrations_desc', language)}</p>
               </div>
             </div>
           </div>

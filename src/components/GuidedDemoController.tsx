@@ -11,12 +11,12 @@ interface DemoStage {
   subtitle: string;
   description: string;
   actionLabel: string;
-  runAction: (state: any) => void;
+  runAction: (state: ReturnType<typeof useStadiumState>) => void;
 }
 
 export const GuidedDemoController: React.FC = () => {
   const state = useStadiumState();
-  const { currentScenario, triggerScenario, resetScenario, reportEmergency, autoAllocateVolunteers, matchInfo, volunteers, emergencies, transit, concessions, zones, liveStats } = state;
+  const { currentScenario, resetScenario, matchInfo, volunteers, emergencies, transit, concessions, zones, liveStats } = state;
   const [currentStep, setCurrentStep] = useState(1);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -39,9 +39,7 @@ export const GuidedDemoController: React.FC = () => {
       description: 'Disruptions strike simultaneously! Torrential rain starts, Metro Line 1 suspends services, and a suspicious bag triggers a security closure at Gate C. Crowds bottleneck, risk levels spike, and wait times multiply.',
       actionLabel: 'Deploy AI Copilot Solutions',
       runAction: (s) => {
-        // Trigger Gate closure scenario (which is a severe threat scenario)
         s.triggerScenario('gate_closure');
-        // Add rain impacts
         setTimeout(() => {
           s.triggerScenario('rain');
         }, 800);
@@ -65,7 +63,6 @@ export const GuidedDemoController: React.FC = () => {
       description: 'Disruptions successfully navigated. Bottlenecks cleared, transit issues stabilized, and emergency responders resolved active incidents. The post-match operations report is ready for export.',
       actionLabel: 'Restart Tour Walkthrough',
       runAction: (s) => {
-        // Resolve emergencies
         s.emergencies.forEach(e => {
           if (e.status !== 'resolved') {
             s.resolveEmergency(e.id);
@@ -79,10 +76,9 @@ export const GuidedDemoController: React.FC = () => {
 
   const handleNextStep = () => {
     setIsRunning(true);
-    let targetStep = currentStep === 4 ? 1 : currentStep + 1;
+    const targetStep = currentStep === 4 ? 1 : currentStep + 1;
     setCurrentStep(targetStep);
     
-    // Run stage setup
     stages[targetStep - 1].runAction(state);
     
     setTimeout(() => {

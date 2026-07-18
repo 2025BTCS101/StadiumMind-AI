@@ -203,7 +203,7 @@ export default function DashboardPage() {
                     <label className="block text-[10px] text-slate-500 mb-1">Incident Type</label>
                     <select
                       value={newIncidentType}
-                      onChange={(e) => setNewIncidentType(e.target.value as any)}
+                      onChange={(e) => setNewIncidentType(e.target.value as 'medical' | 'fire' | 'security' | 'power' | 'crowd')}
                       className="w-full rounded bg-slate-900 p-1.5 outline-none border border-slate-800 text-slate-200"
                     >
                       <option value="medical">Medical emergency</option>
@@ -327,6 +327,7 @@ export default function DashboardPage() {
               {volunteers.map((vol) => (
                 <div key={vol.id} className="flex items-center justify-between rounded-xl bg-slate-950/60 p-3 border border-slate-900">
                   <div className="flex items-center gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={vol.avatar} alt={vol.name} className="h-8 w-8 rounded-full border border-slate-700 shrink-0" />
                     <div>
                       <h4 className="text-xs font-bold text-white">{vol.name}</h4>

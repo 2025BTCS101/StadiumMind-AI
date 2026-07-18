@@ -3,7 +3,6 @@ import './globals.css';
 import { ThemeProvider } from '../context/ThemeContext';
 import { StadiumProvider } from '../context/StadiumContext';
 import { AccessibilitySettings } from '../components/AccessibilitySettings';
-import { DashboardChatbot } from '../components/DashboardChatbot';
 
 export const viewport = {
   width: 'device-width',
@@ -29,7 +28,6 @@ export default function RootLayout({
           <StadiumProvider>
             {children}
             <AccessibilitySettings />
-            <DashboardChatbot />
           </StadiumProvider>
         </ThemeProvider>
       </body>

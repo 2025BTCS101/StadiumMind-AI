@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Shield, Sparkles, Activity, Users, Truck, Accessibility, Heart, Flame, ShieldAlert, Cpu } from 'lucide-react';
+import { Sparkles, Activity, Users, Truck, Cpu } from 'lucide-react';
 
 export default function LandingPage() {
   return (
@@ -34,7 +34,7 @@ export default function LandingPage() {
         {/* Pitch badge */}
         <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-600/10 px-4 py-1.5 text-xs font-bold text-blue-400 animate-float mb-6">
           <Sparkles className="h-4 w-4" />
-          The World's First Predictive AI Operating System for Smart Stadiums
+          The World&apos;s First Predictive AI Operating System for Smart Stadiums
         </div>
 
         {/* Hero Title */}
@@ -103,7 +103,7 @@ export default function LandingPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600/10 text-indigo-400 mb-4">
                 <Activity className="h-5 w-5" />
               </div>
-              <h4 className="font-bold text-base text-white">"What-If" Scenario Simulator</h4>
+              <h4 className="font-bold text-base text-white">&quot;What-If&quot; Scenario Simulator</h4>
               <p className="mt-2.5 text-xs text-slate-400 leading-relaxed font-medium">
                 Simulates localized disruptions—heavy storms, public transit suspends, or gate breaches. Models egress delay multipliers and offers actionable AI recommendations.
               </p>
