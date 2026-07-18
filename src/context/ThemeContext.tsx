@@ -35,6 +35,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     const root = window.document.documentElement;
     
+    // Set dynamic language code
+    root.lang = language;
+
     // Theme classes
     if (theme === 'light') {
       root.classList.remove('dark');
@@ -62,7 +65,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } else {
       root.classList.remove('dyslexic-font');
     }
-  }, [theme, highContrast, largeText, dyslexicFont]);
+  }, [theme, highContrast, largeText, dyslexicFont, language]);
 
   return (
     <ThemeContext.Provider

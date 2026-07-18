@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useStadiumState } from '../context/StadiumContext';
-import { Play, SkipForward, CheckCircle2, AlertTriangle, FileText, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Play, CheckCircle2, AlertTriangle, FileText, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { exportMatchReport } from '../utils/pdfGenerator';
 
 interface DemoStage {

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useStadiumState } from '../context/StadiumContext';
 import { askGeminiAI } from '../utils/gemini';
 import { useThemeSettings } from '../context/ThemeContext';
-import { Send, Mic, MicOff, Volume2, VolumeX, Smartphone, Sparkles, User, Bot, HelpCircle } from 'lucide-react';
+import { Send, Mic, MicOff, Volume2, VolumeX, Smartphone, User, Bot, HelpCircle } from 'lucide-react';
 
 interface ChatMessage {
   sender: 'user' | 'bot';

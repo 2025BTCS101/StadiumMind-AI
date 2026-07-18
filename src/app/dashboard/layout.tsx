@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useStadiumState } from '../../context/StadiumContext';
-import { LayoutDashboard, Radio, Cpu, Bell, AlertTriangle, ArrowLeft, RefreshCw, PlusCircle, CheckCircle, ShieldAlert } from 'lucide-react';
+import { LayoutDashboard, Radio, Cpu, Bell, ArrowLeft, PlusCircle, ShieldAlert } from 'lucide-react';
 
 export default function DashboardLayout({
   children,

@@ -5,7 +5,7 @@ import { useStadiumState } from '../../context/StadiumContext';
 import { DigitalTwin } from '../../components/DigitalTwin';
 import { ScenarioSimulator } from '../../components/ScenarioSimulator';
 import { GuidedDemoController } from '../../components/GuidedDemoController';
-import { ShieldAlert, Users, Timer, Activity, Heart, Flame, Shield, HelpCircle, UserCheck, Droplet, Zap, Trash2, Globe, Send, Plus } from 'lucide-react';
+import { ShieldAlert, Users, Timer, Activity, Heart, Flame, UserCheck, Droplet, Zap, Trash2, Globe, Send, Plus } from 'lucide-react';
 
 export default function DashboardPage() {
   const {
